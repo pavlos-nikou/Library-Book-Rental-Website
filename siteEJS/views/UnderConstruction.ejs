@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/36bce782d3.js" crossorigin="anonymous"></script>
+    <!-- styles -->
+    <link rel="stylesheet" href="/app.css">
+    <link rel="stylesheet" href="/navbar.css">
+    <link rel="stylesheet" href="/carusel.css">
+    <link rel="stylesheet" href="/cart.css">
+    <link rel="shortcut icon" href="/pictures/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <%- include("partials/navbar.ejs") %>
+        <div id="carusel-buttons">
+            <button id="prev">&#x0003C;</button>
+            <button id="next">&#x0003E;</button>
+        </div>
+        <div class="carusel" id="top10">
+            <% top10.forEach(item=> {%>
+                <div class="caruselItem">
+                    <div>
+                        <img src="<%=item.img%>" alt="">
+                        <h2>
+                            <%=item.title %>
+                        </h2>
+                    </div>
+                    <p>
+                        <%= item.discreption %>
+                    </p>
+                    <button class="addToCart"><i class="fa-solid fa-cart-plus"></i></button>
+                </div>
+                <% }) %>
+        </div>
+        <div id="searchBig">
+            <form action="/UnderConstruction/searchProducts">
+                <a id="logo" href="/UnderConstruction">Under Construction</a>
+                <label for="search">&telrec;</label>
+                <input type="text" name="search" id="search" placeholder="Search Book">
+            </form>
+        </div>
+        <h2>Genres</h2>
+        <div id="Genres">
+            <form action="/UnderConstruction/searchProducts"><button>Fantasy</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Sci-fi</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Mystery</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Thriller</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Romance</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Westerns</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Dystopian</button></form>
+            <form action="/UnderConstruction/searchProducts"><button>Self-Improvment</button></form>
+        </div>
+        <%- include("partials/cart.ejs") %>
+            <%- include("partials/signIn.ejs") %>
+                <%- include("partials/footer.ejs") %>
+
+                    <script src="/navbar.js"></script>
+                    <script src="/carusel.js"></script>
+                    <script src="/app.js"></script>
+                    <script src="/cart.js"></script>
+</body>
+
+</html>

@@ -99,6 +99,13 @@
     font-size: 0.8em;
 }
 
+.caruselItem span{
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 0.7em;
+}
+
 .caruselItem button{
     color: whitesmoke;
     font-size: 30px;
@@ -121,6 +128,7 @@
     height: 90%;
     margin: 0;
 }
+
 @media(max-width:1400px){
     .caruselItem{
         min-width: 49.5%;

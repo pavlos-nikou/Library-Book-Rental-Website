@@ -27,17 +27,28 @@
             <button id="next">&#x0003E;</button>
         </div>
         <div class="carusel" id="top10">
-            <% top10.forEach(item=> {%>
+            <% data.forEach(item=> {%>
                 <div class="caruselItem">
                     <div>
-                        <img src="<%=item.img%>" alt="">
+                        <img src="<%=item.image_url%>" alt="" data-id="<%=item.id%>">
                         <h2>
                             <%=item.title %>
                         </h2>
                     </div>
                     <p>
-                        <%= item.discreption %>
+                        Rating:
+                        <% stars=Math.floor(item.average_rating) %>
+                            <%for (let i=1; i <=5; i++) {%>
+                                <%if(i<=stars){%>
+                                    <i class="fa-solid fa-star"></i>
+                                    <%}else{%>
+                                        <i class="fa-regular fa-star"></i>
+                                        <%}%>
+                                            <%}%>
+                                            
                     </p>
+                    <span id="author"><%=item.authors%></span>
+                    
                     <button class="addToCart"><i class="fa-solid fa-cart-plus"></i></button>
                 </div>
                 <% }) %>
@@ -51,14 +62,14 @@
         </div>
         <h2>Genres</h2>
         <div id="Genres">
-            <form action="/UnderConstruction/searchProducts"><button>Fantasy</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Sci-fi</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Mystery</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Thriller</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Romance</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Westerns</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Dystopian</button></form>
-            <form action="/UnderConstruction/searchProducts"><button>Self-Improvment</button></form>
+            <form action="/UnderConstruction/searchProducts/Fantacy"><button>Fantacy</button></form>
+            <form action="/UnderConstruction/searchProducts/Sci-fi"><button>Sci-fi</button></form>
+            <form action="/UnderConstruction/searchProducts/Mystery"><button>Mystery</button></form>
+            <form action="/UnderConstruction/searchProducts/Thriller"><button>Thriller</button></form>
+            <form action="/UnderConstruction/searchProducts/Romance"><button>Romance</button></form>
+            <form action="/UnderConstruction/searchProducts/Westerns"><button>Westerns</button></form>
+            <form action="/UnderConstruction/searchProducts/Dystopian"><button>Dystopian</button></form>
+            <form action="/UnderConstruction/searchProducts/self-improvement"><button>Self-Improvment</button></form>
         </div>
         <%- include("partials/cart.ejs") %>
             <%- include("partials/signIn.ejs") %>

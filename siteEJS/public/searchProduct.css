@@ -68,11 +68,40 @@ header{
     z-index: 2;
 }
 
-.side-genres h2, .side-genres input{
+.filters{
+    height: 91vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.filters::-webkit-scrollbar {
+    width: 10px;
+}
+
+.filters::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.filters::-webkit-scrollbar-thumb {
+    background: whitesmoke;
+    border-radius: 10px;
+}
+
+.filters::-webkit-scrollbar-thumb:hover {
+    background:#219ebc;
+}
+
+.filters::-webkit-scrollbar-corner {
+    background: none;
+}
+
+.side h2, .side input{
     margin-left: 30px;
 }
 
-.side-genres h2 {
+.side h2 {
+    display: inline-block;
+    width: 100%;
     text-align: left;
     font-size: 2em;
 }
@@ -87,6 +116,7 @@ header{
     height: 105px;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
+    z-index: 2;
 }
 
 .sidebar .expand-sidebar-icon{
@@ -124,7 +154,8 @@ header{
 }
 
 .item .title {
-    font-size: 1em;
+    width: 95%;
+    font-size: 0.9em;
     text-align: center;
 }
 
@@ -134,20 +165,36 @@ header{
     -webkit-text-stroke-color: black;
 }
 
+.loading{
+    text-align: center;
+    min-width: 100%;
+    display: block;
+    font-size: 3em;
+}
+
+.nothingFound{
+    color: grey;
+    margin-top: 10vh;
+}
+
 @media(max-width:1150px) {
     .displayItems{
         width: 100%;
     }
+    .filters{
+        height: 70vh;
+    }
     .sidebar{
         width: 350px;
         position: fixed;
-        top: 205px;
-        height: 100vh;
+        top: 200px;
+        height: 70vh;
     }
 }
 
 @media(max-width:637px){
     .item{
+        height: 175px;
         width: 100%;
         flex-direction: row;
         font-size: 0.5em;
@@ -156,10 +203,11 @@ header{
         width:20%;
     }
     .item .title{
-        font-size: 2em;
+        width: 35%;
+        font-size: 1.7em;
     }
     .item span{
-        font-size:0.5em;
+        font-size:1em;
     }
 }
 
@@ -170,4 +218,8 @@ header{
 }
 .rotate-icon-180{
     transform: rotate(-180deg);
+}
+
+.hide{
+    display: none;
 }

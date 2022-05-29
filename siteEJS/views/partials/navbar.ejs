@@ -7,8 +7,8 @@
             <li class="toggling" id="toggling"><a href="#top10" class="navbarButton">Top 10</a></li>
             <li class="toggling" id="toggling"><a href="#about" class="navbarButton">About Us</a></li>
         </ul>
-        <a href="#account"><i class="fa-solid fa-user" id="accountIcon"></i></a>
-        <form action="/UnderConstruction/searchProducts" class="toggling" id="toggling">
+        <a href="#account"><i class="fa-solid fa-user" id="accountIcon"></i> <%= account.name%></a>
+        <form action="/UnderConstruction/searchProducts/s" class="toggling" id="toggling">
             <label for="search-box">&telrec;</label>
             <input type="text" name="search-box" id="search-box" placeholder="Search Book">
         </form>

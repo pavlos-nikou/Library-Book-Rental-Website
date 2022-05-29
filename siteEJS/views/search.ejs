@@ -26,12 +26,11 @@
 <body>
     <%- include("partials/navbar.ejs") %>
         <div class="productNav">
-            <form action="/UnderConstruction/searchProducts" class="search">
+            <form action="/UnderConstruction/searchProducts/s" class="search">
                 <label for="search">&telrec;</label>
                 <input type="text" name="search" id="search" placeholder="Search Book">
             </form>
             <div class="icons">
-                <i class="fa-solid fa-magnifying-glass icon active"></i>
                 <i class="fa-solid fa-arrow-down-a-z icon"></i>
                 <i class="fa-solid fa-arrow-down-z-a icon"></i>
                 <i class="fa-solid fa-thumbs-up icon"></i>
@@ -42,7 +41,7 @@
                 <div class="filters">
                     <div class="side-genres side">
                         <h2>Genres</h2>
-                        
+
                         <% genres.forEach(genre=> {%>
                             <input type="checkbox" name="<%= genre%>" id="<%= genre%>">
                             <label for="<%= genre%>">
@@ -73,14 +72,15 @@
                 </div>
                 <div class="iconContainer hidden">
                     <i class="fa-solid fa-circle-arrow-right expand-sidebar-icon"></i>
-                </div>  
+                </div>
             </div>
             <div class="displayItems">
                 <% if(searchResault.length===0) {%>
                     <div class="nothingFound">Sorry there are no Book titles matching your search</div>
                     <%}%>
                         <% searchResault.forEach(item=> {%>
-                            <div class="item" data-id="<%= item.id%>" data-lang="<%=item.language_code%>" data-material="<%= item.material%>" data-genre="<%= item.genre%>">
+                            <div class="item" data-id="<%= item.id%>" data-title="<%=item.title%>" data-rating="<%=item.average_rating%>" data-lang="<%=item.language_code%>" data-material="<%= item.material%>"
+                                data-genre="<%= item.genre%>">
                                 <img src="<%=item.image_url%>" alt="agatha book cover">
                                 <span class="title">
                                     <%=item.title%>
@@ -96,6 +96,7 @@
                                                     <%}%>
                                                         <%}%>
                                 </p>
+                                <button class="addToCart"><i class="fa-solid fa-cart-plus"></i></button>
                             </div>
                             <% }) %>
             </div>

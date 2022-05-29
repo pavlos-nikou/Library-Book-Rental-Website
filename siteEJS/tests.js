@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Book = require("./models/book");
 const langs = require("langs")
+const Account = require("./models/account");
 
 mongoose.connect("mongodb+srv://under:construction@ucdatabase.f09kl.mongodb.net/UCdatabase?retryWrites=true&w=majority")
     .then(() => {
@@ -42,5 +43,14 @@ async function langC2N(){
 
 }
 
-langC2N()
-// console.log(langs.codes("2B"))
+function logAllAccounts(){
+    let account = Account.insertMany({name:"petris",surname:"poutakazia",email:"pavlis_n@yahoo.com"})
+    .then(data =>{
+        console.log(data)
+    })
+    .catch(err =>{
+        console.log(err)
+    })
+}
+
+logAllAccounts()

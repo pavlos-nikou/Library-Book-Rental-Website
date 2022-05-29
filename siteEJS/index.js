@@ -3,13 +3,27 @@ const mongoose = require("mongoose");
 const app = express();
 const path = require("path");
 const Book = require("./models/book");
+const Account = require("./models/account")
 const langs = require("langs")
+
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "/views"))
 app.use(express.static(path.join(__dirname, "/public")))
 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
+
+let signedIn = false;
+let user = {
+    "_id": {
+        "$oid": "guestId"
+    },
+    "name": "Guest",
+    "surname": "",
+    "email": "",
+    "password": "",
+    cart: []
+}
 
 mongoose.connect("mongodb+srv://under:construction@ucdatabase.f09kl.mongodb.net/UCdatabase?retryWrites=true&w=majority")
     .then(() => {
@@ -19,8 +33,26 @@ mongoose.connect("mongodb+srv://under:construction@ucdatabase.f09kl.mongodb.net/
         console.log("failed to connect to UCdatabase");
         console.log(e);
     })
+// validate if account exists and if the password is matching for the account that the user is trying to sign in as.
+async function validate(AcEmail, AcPassword) {
+    // console.log(AcEmail,AcPassword)
+    let signInAccount = await Account.find({ email: AcEmail })
 
-
+    if (signInAccount !== []) {
+        if (signInAccount[0].password === AcPassword) {
+            // console.log(signInAccount)
+            return true, signInAccount[0]
+        }
+        else {
+            console.log("false account credectials")
+            return false, "false credentials!!!"
+        }
+    }
+    else {
+        console.log('an error has occured!!')
+        return false, 'an error has occured!!';
+    }
+}
 // redirect to index (UnderConstruction) for no reason 
 app.get("/", (req, res) => {
     res.redirect("UnderConstruction")
@@ -31,12 +63,13 @@ app.get("/UnderConstruction", async (req, res) => {
     const data = await Book.find({}).sort({ top: 1 }).limit(10)
     console.log("database access successfull. starting to render Underconstruction.ejs")
     // console.log(data)
-    res.render("UnderConstruction", { data: data })
+    // console.log(user)
+    res.render("UnderConstruction", { data: data, signedIn: signedIn, account: user })
 })
 
 
 // request for searching for a book
-app.get("/UnderConstruction/searchproducts", async (req, res) => {
+app.get("/UnderConstruction/searchproducts/s", async (req, res) => {
     let searchTerm = req.query.search
     console.log("searching....")
     // console.log(`searching for ${searchTerm}`)
@@ -44,7 +77,7 @@ app.get("/UnderConstruction/searchproducts", async (req, res) => {
     let langCodes = await Book.distinct("language_code")
     let languages = []
     langCodes.forEach(code => {
-        languages.push([code,langs.where("2", code).name])
+        languages.push([code, langs.where("2", code).name])
     });
     let genres = await Book.distinct("genre")
     let materials = await Book.distinct("material")
@@ -52,44 +85,67 @@ app.get("/UnderConstruction/searchproducts", async (req, res) => {
     console.log("database access successfull. starting to render Search.ejs")
     // console.log(searchResault)
     // console.log(searchResault.length)
-    res.render("Search", { searchResault: searchResault, languages: languages, genres: genres, materials: materials })
+    // console.log(user)
+    res.render("Search", { searchResault: searchResault, languages: languages, genres: genres, materials: materials, signedIn: signedIn, account: user })
 })
 
 
 // request for lazy loading
-app.get("/UnderConstruction/searchproducts/:searchTerm/:skipAmmount", async (req, res) => {
+app.get("/UnderConstruction/searchproducts/:type/:searchTerm/:skipAmmount", async (req, res) => {
     let searchTerm = req.params.searchTerm
     let skipAmmount = req.params.skipAmmount
-    console.log(searchTerm, skipAmmount)
-    let data = await Book.find({ title: { "$regex": `${searchTerm}`, "$options": "i" } }).skip(skipAmmount).limit(10)
+    let typeOfSearch = req.params.type
+    // console.log(searchTerm, skipAmmount, typeOfSearch)
+    let data = ""
+    if (typeOfSearch === "s") {
+        data = await Book.find({ title: { "$regex": `${searchTerm}`, "$options": "i" } }).skip(skipAmmount).limit(10)
+    }
+    else {
+        if (typeOfSearch = "g") {
+            data = await Book.find({ genre: { "$regex": `${searchTerm}`, "$options": "i" } }).skip(skipAmmount).limit(10)
+        }
+    }
     // console.log(data)
+    // console.log(user)
     res.send(data)
 })
 
 // request for genres
-app.get("/UnderConstruction/searchproducts/:genre", async (req, res) => {
+app.get("/UnderConstruction/searchproducts/g/:genre", async (req, res) => {
     let searchedGenre = req.params.genre
     console.log(searchedGenre)
     let langCodes = await Book.distinct("language_code")
     let languages = []
     langCodes.forEach(code => {
-        languages.push(code,langs.where("2", code).name)
+        languages.push([code, langs.where("2", code).name])
     });
+    console.log(languages)
     let genres = await Book.distinct("genre")
     let materials = await Book.distinct("material")
     let searchResault = await Book.find({ genre: searchedGenre, "$options": "i" }).limit(10)
     // console.log(searchResault)
-    res.render("Search", { searchResault: searchResault, languages: languages, genres: genres, materials: materials })
+    // console.log(user)
+    res.render("Search", { searchResault: searchResault, languages: languages, genres: genres, materials: materials, signedIn: signedIn, account: user })
 })
 
-// app.get("/UnderConstruction/searchproducts/:id",(req,res)=>{
-//     console.log(req.params)
-// })
+// validate Account
+app.post("/UnderConstruction/signIn", async (req, res) => {
+    let AcEmail = req.body.email
+    let AcPassword = req.body.pass
+    // console.log(AcPassword);
+    let signedInAccount = await validate(AcEmail, AcPassword)
+    user = signedInAccount
+    // console.log(user)
+    res.send(signedInAccount)
+})
 
-// app.post("/UnderConstruction/searchproducts/:id",(req,res)=>{
-//     res.render(req.body)
-// })
+//request to load product
+app.get("/UnderConstruction/searchproducts/:id",async (req,res)=>{
+    let bookId = req.params.id
+    let book = await Book.find({_id:"628752c997106114faf2a042"})
+    res.send(book)
+})
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log("listening")
 })

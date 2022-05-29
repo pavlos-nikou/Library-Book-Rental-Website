@@ -85,7 +85,7 @@ genreFilters.forEach(genre => {
         else {
             filters.genre = filters.genre.filter(element => element !== event.target.name)
         }
-        console.log(filters)
+        // console.log(filters)
         addFilters(filters)
     })
 })
@@ -99,7 +99,7 @@ materialFilters.forEach(material => {
             filters.material = filters.material.filter(element => element !== event.target.name)
         }
         // filters.material.push(event.target.name)
-        console.log(filters)
+        // console.log(filters)
         addFilters(filters)
     })
 })
@@ -113,7 +113,7 @@ langFilters.forEach(lang => {
             filters.lang = filters.lang.filter(element => element !== event.target.name)
         }
         // filters.lang.push(event.target.name)
-        console.log(filters)
+        // console.log(filters)
         addFilters(filters)
     })
 })
@@ -143,6 +143,8 @@ const appendNewData = data => {
         item.dataset.lang = book.language_code
         item.dataset.material = book.material
         item.dataset.genre = book.genre
+        item.dataset.title = book.title
+        item.dataset.rating = book.average_rating
         const ratingInStars = generateStars(book.average_rating)
         item.innerHTML = `<img src="${book.image_url}" alt="book cover of ${book.title}">
                             <span class="title">${book.title}</span>
@@ -158,21 +160,33 @@ $(window).scroll(function () {
         if (loading === false) {
             loading = true
             // console.log("this is the end")
-            let searchTerm = window.location.search.slice(8)
+
             let displayItems = document.querySelector(".displayItems")
             if (displayItems.childElementCount >= 10) {
                 let loadingDiv = document.createElement("div")
                 loadingDiv.classList.add("loading")
                 loadingDiv.innerHTML = `<i class="fa-solid fa-spinner fa-spin-pulse"></i>`
                 displayItems.appendChild(loadingDiv)
-                console.log(searchTerm, displayItems.childElementCount)
+                // console.log(searchTerm, displayItems.childElementCount)
+                let currentUrl = window.location.href.split("/");
+                // console.log(currentUrl[5]);
+                let url = ""
+                let searchTerm = ""
+                if (currentUrl[5].slice(0, 1) == "s") {
+                    searchTerm = window.location.search.slice(8)
+                    url = `http://localhost:3000/UnderConstruction/searchproducts/s/${searchTerm}/${displayItems.childElementCount - 1}`
+                }
+                if (currentUrl[5] == "g") {
 
-                fetch(`http://localhost:3000/UnderConstruction/searchproducts/${searchTerm}/${displayItems.childElementCount - 1}`)
+                    url = `http://localhost:3000/UnderConstruction/searchproducts/g/${currentUrl[6].slice(0, -1)}/${displayItems.childElementCount - 1}`
+                }
+                // console.log(url)
+                fetch(url)
                     .then(response => {
                         return response.json()/*xriazete return mlka pavlo*/
                     })
                     .then(data => {
-                        console.log("Lazy Loading data :", data)
+                        // console.log("Lazy Loading data :", data)
                         if (data.length === 0) {
                             loadingDiv.innerHTML = "End of Results :("
                         }
@@ -183,9 +197,83 @@ $(window).scroll(function () {
                             addFilters(filters)
                         }
                     })
+                    .catch(err => {
+                        loadingDiv.innerHTML = "error!!!\n pls reload the page"
+                    })
             }
         }
 
     }
 });
+
+// ##########################################SORTING#####################################################
+function sortAz(elements) {
+    let sortingHelp = []
+    let i = 0
+    elements.forEach(element => {
+        sortingHelp.push({ index: i, title: element.dataset.title })
+        i++
+        // console.log(sortingHelp)
+    })
+    // console.log(sortingHelp)
+    sortingHelp.sort((a, b) => (a.title < b.title ? 1 : -1));
+    return sortingHelp
+}
+function sortZa(elements) {
+    let sortingHelp = []
+    let i = 0
+    elements.forEach(element => {
+        sortingHelp.push({ index: i, title: element.dataset.title })
+        i++
+        // console.log(sortingHelp)
+    })
+    // console.log(sortingHelp)
+    sortingHelp.sort((a, b) => (a.title > b.title ? 1 : -1));
+    return sortingHelp
+}
+function sortRating(elements) {
+    let sortingHelp = []
+    let i = 0
+    elements.forEach(element => {
+        sortingHelp.push({ index: i, rating: element.dataset.rating })
+        i++
+        console.log(sortingHelp)
+    })
+    // console.log(sortingHelp)
+    sortingHelp.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+    return sortingHelp
+}
+
+function sort(func) {
+    let display = document.querySelector(".displayItems")
+    // console.dir(display)
+    let displayItems = document.querySelectorAll(".item")
+    // console.log(displayItems)
+    sortingHelp = func(displayItems)
+    let sortedElements = []
+    sortingHelp.forEach(element => {
+        sortedElements.push(displayItems[element.index])
+    });
+    // console.log(sortedElements)
+    display.innerHTML = ""
+    // console.dir(sortedElements)
+    sortedElements.forEach(element => {
+        display.appendChild(element)
+    })
+}
+
+let sortAzButton = document.querySelector(".fa-arrow-down-a-z")
+sortAzButton.addEventListener("click", () => {
+    sort(sortAz)
+});
+
+let sortZaButton = document.querySelector(".fa-arrow-down-z-a")
+sortZaButton.addEventListener("click", () => {
+    sort(sortZa)
+})
+
+let sortRatingButton = document.querySelector(".fa-thumbs-up")
+sortRatingButton.addEventListener("click", () => {
+    sort(sortRating)
+})
 

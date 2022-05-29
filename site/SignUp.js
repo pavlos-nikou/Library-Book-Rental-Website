@@ -13,7 +13,7 @@ let continueButton = document.querySelector("#continue")
 console.log(continueButton);
 continueButton.addEventListener("click",()=>{
     let signUp = document.querySelector(".form_signup-container")
-    signUp.style.transform = "translateY(-500px)"
+    signUp.style.transform = "translateY(-400px)"
     let container = document.querySelector(".container")
     container.style.width = "1080px"
 })

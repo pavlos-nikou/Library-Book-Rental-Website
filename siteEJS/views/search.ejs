@@ -82,9 +82,9 @@
                             <div class="item" data-id="<%= item.id%>" data-title="<%=item.title%>" data-rating="<%=item.average_rating%>" data-lang="<%=item.language_code%>" data-material="<%= item.material%>"
                                 data-genre="<%= item.genre%>">
                                 <img src="<%=item.image_url%>" alt="agatha book cover">
-                                <span class="title">
+                                <a class="title" href="/UnderConstruction/searchProducts/<%=item.id%>">
                                     <%=item.title%>
-                                </span>
+                                </a>
                                 <span>Rating:</span>
                                 <p>
                                     <% stars=Math.floor(item.average_rating) %>

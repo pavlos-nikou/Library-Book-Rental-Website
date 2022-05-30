@@ -69,7 +69,7 @@ app.get("/UnderConstruction", async (req, res) => {
 
 
 // request for searching for a book
-app.get("/UnderConstruction/searchproducts/s", async (req, res) => {
+app.get("/UnderConstruction/searchProducts/s", async (req, res) => {
     let searchTerm = req.query.search
     console.log("searching....")
     // console.log(`searching for ${searchTerm}`)
@@ -91,7 +91,7 @@ app.get("/UnderConstruction/searchproducts/s", async (req, res) => {
 
 
 // request for lazy loading
-app.get("/UnderConstruction/searchproducts/:type/:searchTerm/:skipAmmount", async (req, res) => {
+app.get("/UnderConstruction/searchProducts/:type/:searchTerm/:skipAmmount", async (req, res) => {
     let searchTerm = req.params.searchTerm
     let skipAmmount = req.params.skipAmmount
     let typeOfSearch = req.params.type
@@ -111,7 +111,7 @@ app.get("/UnderConstruction/searchproducts/:type/:searchTerm/:skipAmmount", asyn
 })
 
 // request for genres
-app.get("/UnderConstruction/searchproducts/g/:genre", async (req, res) => {
+app.get("/UnderConstruction/searchProducts/g/:genre", async (req, res) => {
     let searchedGenre = req.params.genre
     console.log(searchedGenre)
     let langCodes = await Book.distinct("language_code")
@@ -140,10 +140,16 @@ app.post("/UnderConstruction/signIn", async (req, res) => {
 })
 
 //request to load product
-app.get("/UnderConstruction/searchproducts/:id",async (req,res)=>{
+app.get("/UnderConstruction/searchProducts/:id", async (req, res) => {
+    console.log("product")
     let bookId = req.params.id
-    let book = await Book.find({_id:"628752c997106114faf2a042"})
-    res.send(book)
+    console.log(bookId)
+    let book = await Book.find({ "_id": bookId })
+    console.log(book);
+    let recommended = await Book.find({ genre: book[0].genre, "$options": "i" }).limit(5)
+    console.log(recommended);
+    // res.send(bookdata)
+    res.render("productPage", { book: book[0], recommended: recommended, signedIn: signedIn, account: user })
 })
 
 app.listen(process.env.PORT || 3000, () => {

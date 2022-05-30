@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: #f5f3f4;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -15,7 +15,7 @@ header{
     background: linear-gradient(135deg, rgba(0,0,0,0.814385150812065) 0%, rgba(0,0,0,0.6979166666666667) 17%, rgba(0,212,255,0) 100%);
     background-color: #415a77;
     transition: 500ms;
-}
+} */
 
 p{
     font-size: 18px;
@@ -28,7 +28,10 @@ h3{
 }
 
 .card-title{
+    width: 80%;
+    font-size: 2em;
     margin-bottom: 30px;
+    text-decoration: none;
 }
 
 #abstract{
@@ -269,7 +272,7 @@ span{
     -webkit-text-size-adjust: 100%;
     list-style: none;
     box-sizing: border-box;
-    font: inherit;
+    /* font: inherit; */
     border-radius: 20px;
     background: #fff;
     position: relative;
@@ -280,8 +283,8 @@ span{
     min-height: auto;
     border: 0;
     padding: 16px;
-    overflow-y: hidden;
-    width: calc(20% - 12.8px);
+    /* overflow-y: hidden; */
+    /* width: calc(20% - 12.8px); */
     display: inline-block;
     float: none;
     vertical-align: top;
@@ -289,7 +292,8 @@ span{
     font-size: initial;
     clear: none;
     margin: 0 16px 0 0;
-    width: 200px;
+    width: 260px;
+    /* overflow: hidden; */
 }
 
 .pic-card-link{
@@ -353,26 +357,6 @@ span{
     -webkit-box-orient: vertical;
 }
 
-.book-price{
-    -webkit-text-size-adjust: 100%;
-    list-style: none;
-    -webkit-box-direction: normal;
-    white-space: initial;
-    box-sizing: border-box;
-    margin: 0;
-    border: 0;
-    padding: 0;
-    vertical-align: baseline;
-    font: inherit;
-    font-size: 13px;
-    line-height: 17px;
-    /* position: relative; */
-    text-align: left;
-    /* align-self: normal; */
-    margin-top: 16px;
-    color: #707070;
-}
-
 
 .product-price{
     -webkit-text-size-adjust: 100%;
@@ -393,7 +377,7 @@ span{
     line-height: 21px;
     white-space: normal;
 }
-
+/* 
 footer {
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.814385150812065) 0%, rgba(0, 0, 0, 0.6979166666666667) 17%, rgba(0, 212, 255, 0) 100%);
     background-color: #415a77;
@@ -434,7 +418,7 @@ footer .links h2{
 
 #about {
     border-right: 1px solid white;
-}
+} */
 
 @media(max-width:1150px){
     .content{

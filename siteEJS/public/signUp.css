@@ -6,13 +6,15 @@
 
 body {
 	background: #f6f5f7;
-	display: flex;
+	/* display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
+	flex-direction: column; */
 	font-family: 'Montserrat', sans-serif;
-	height: 100vh;
-	margin: -20px 0 50px;
+	/* height: 100vh; */
+
+	
+	
 }
 
 h1 {
@@ -39,7 +41,8 @@ a {
 	margin: 15px 0;
 }
 
-button {
+#continue {
+	width: fit-content;
 	border-radius: 20px;
 	border: 1px solid #FFFFFF;
 	background: linear-gradient(135deg, rgba(0, 0, 0, 0.814385150812065) 0%, rgba(0, 0, 0, 0.6979166666666667) 17%, rgba(0, 212, 255, 0) 100%);
@@ -51,7 +54,8 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
-  margin-bottom: 70px;
+	margin: 0 auto;
+  	margin-bottom: 70px;
 }
 
 form {
@@ -80,9 +84,12 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	width: 768px;
-	height: 500px;
+	min-height: 400px;
   overflow: hidden;
   transition: 700ms;
+  margin: 12% auto 20%;
+
+
 }
 
 .social-container {
@@ -90,8 +97,10 @@ input {
 }
 
 .arrow{
+	width: 50px;
 	position: relative;
-	left: 475px;
+	bottom: 90px;
+	left: 780px;
 	color: black;
 	background:none;
 	border: none;
@@ -141,4 +150,32 @@ input {
   display: grid;
   grid-gap: 1rem;
 }
+
+.field{
+	margin: 5px 10px;
+}
+
+#address{
+	margin: 0 auto;
+	width: 630px;
+	display: block;
+
+}
+/* 
+#proceed{
+	border-radius: 20px;
+	border: 1px solid #FFFFFF;
+	background: linear-gradient(135deg, rgba(0, 0, 0, 0.814385150812065) 0%, rgba(0, 0, 0, 0.6979166666666667) 17%, rgba(0, 212, 255, 0) 100%);
+	background-color: #415a77;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in; */
+	/* margin-bottom: 70px; */
+	/* margin-top: 10px;
+	width: 55px;
+} */
 

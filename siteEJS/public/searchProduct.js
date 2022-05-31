@@ -147,9 +147,10 @@ const appendNewData = data => {
         item.dataset.rating = book.average_rating
         const ratingInStars = generateStars(book.average_rating)
         item.innerHTML = `<img src="${book.image_url}" alt="book cover of ${book.title}">
-                            <span class="title">${book.title}</span>
+                            <a class="title" href = "/UnderConstruction/searchProducts/${book._id}">${book.title}</a>
                             <span>Rating:</span>
-                            <p>${ratingInStars}</p>`
+                            <p>${ratingInStars}</p>
+                            <button class="addToCart"><i class="fa-solid fa-cart-plus"></i></button>`
         displayItems.appendChild(item)
     })
 }
@@ -216,7 +217,7 @@ function sortAz(elements) {
         // console.log(sortingHelp)
     })
     // console.log(sortingHelp)
-    sortingHelp.sort((a, b) => (a.title < b.title ? 1 : -1));
+    sortingHelp.sort((a, b) => (a.title > b.title ? 1 : -1));
     return sortingHelp
 }
 function sortZa(elements) {
@@ -228,7 +229,7 @@ function sortZa(elements) {
         // console.log(sortingHelp)
     })
     // console.log(sortingHelp)
-    sortingHelp.sort((a, b) => (a.title > b.title ? 1 : -1));
+    sortingHelp.sort((a, b) => (a.title < b.title ? 1 : -1));
     return sortingHelp
 }
 function sortRating(elements) {
@@ -240,7 +241,7 @@ function sortRating(elements) {
         console.log(sortingHelp)
     })
     // console.log(sortingHelp)
-    sortingHelp.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+    sortingHelp.sort((a, b) => (a.rating < b.rating ? 1 : -1));
     return sortingHelp
 }
 

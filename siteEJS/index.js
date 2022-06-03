@@ -159,7 +159,30 @@ app.get("/UnderConstruction/SignUp", (req, res) => {
 
 app.post("/UnderConstruction/SignUp",(req,res) => {
     console.log(req.body);
-    res.redirect("/");
+    const user = new Account({ 
+        username: req.body.username, 
+        email: req.body.email, 
+        password: req.body.password, 
+        password2: req.body.password2,  
+        firstName: req.body.firstName, 
+        lastName: req.body.lastName,
+        address: req.body.address,
+        country: req.body.country,
+        zipCode: req.body.zipCode,
+        city: req.body.city
+    });
+    
+    user.save()
+    .then(() => {
+        console.log('good')
+        res.redirect("/");
+    })
+    .catch((err) => {
+        console.dir(err)
+        // res.send(err)
+        res.render("SignUp", {err:err})
+    })
+
 
 });
 

@@ -51,7 +51,6 @@
                     </div>
                     <div class="side-material side">
                         <h2>Material</h2>
-                        <i class="fa-solid fa-filter-circle-xmark" id="removeMaterial"></i>
                         <% materials.forEach(material=> {%>
                             <input type="checkbox" name="<%= material%>" id="<%= material%>">
                             <label for="<%= material%>">
@@ -61,7 +60,6 @@
                     </div>
                     <div class="side-langs side">
                         <h2>Language Code</h2>
-                        <i class="fa-solid fa-filter-circle-xmark" id="removeLang"></i>
                         <% languages.forEach(lang=> {%>
                             <input type="checkbox" name="<%= lang[0]%>" id="<%= lang[0]%>">
                             <label for="<%= lang[0]%>">
@@ -96,7 +94,7 @@
                                                     <%}%>
                                                         <%}%>
                                 </p>
-                                <button class="addToCart"><i class="fa-solid fa-cart-plus"></i></button>
+                                <button class="addToCart" data-id="<%=item.id%>"><i class="fa-solid fa-cart-plus" data-id="<%=item.id%>"></i></button>
                             </div>
                             <% }) %>
             </div>

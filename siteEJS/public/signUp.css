@@ -84,7 +84,7 @@ input {
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	width: 768px;
-	min-height: 400px;
+	min-height: 500px;
   overflow: hidden;
   transition: 700ms;
   margin: 12% auto 20%;
@@ -161,6 +161,10 @@ input {
 	display: block;
 
 }
+
+.error{
+	color: red;
+}	
 /* 
 #proceed{
 	border-radius: 20px;

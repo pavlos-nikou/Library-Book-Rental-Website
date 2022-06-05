@@ -52,47 +52,88 @@
           </div>
           <span>or use your email for registration</span>
           <input type="text" placeholder="Username" name="username"/>
-          <input type="email" placeholder="Email" name="email"/>
+          <%if (typeof(err) !== 'undefined') {%> 
+          <%if (typeof(err.errors.username) !== 'undefined') {%> 
+            <span class="error"><%=err.errors.username%></span>
+              <%}%>
+            <%}%>
+          <input type="text" placeholder="Email" name="email"/>
+          <%if (typeof(err) !== 'undefined') {%> 
+            <%if (typeof(err.errors.email) !== 'undefined') {%> 
+               <span class="error"><%=err.errors.email%></span>
+                <%}%>
+              <%}%>
           <input type="password" placeholder="Password" name="password"/>
+          <%if (typeof(err) !== 'undefined') {%> 
+            <%if (typeof(err.errors.password) !== 'undefined') {%> 
+               <span class="error"><%=err.errors.password%></span>
+                <%}%>
+              <%}%>
+          <input
+          type="password" id="password2" placeholder="Confirm your password" name="password2"/>
+          <%if (typeof(err) !== 'undefined') {%> 
+            <%if (typeof(err.errors.password2) !== 'undefined') {%> 
+                <span class="error"><%=err.errors.password2%></span>
+                <%}%>
+              <%}%>
           <button id="continue">Continue</button>
 
           <div class="form_details">
             <div class="details">
               <label class="field">
-                <span class="field__label" for="firstname">First name</span>
-                <input class="field__input" type="text" id="firstname" placeholder="Bill" name="firstName"/>
+                <input class="field__input" type="text" id="firstname" placeholder="First Name" name="firstName"/>
+                <%if (typeof(err) !== 'undefined') {%> 
+                  <%if (typeof(err.errors.firstName) !== 'undefined') {%> 
+                     <span class="error"><%=err.errors.firstName%></span>
+                      <%}%>
+                    <%}%>
               </label>
               <label class="field">
-                <span class="field__label" for="lastname">Last name</span>
-                <input
-                  class="field__input"
-                  type="text"
-                  id="lastname"
-                  placeholder="Gates"
-                  name="lastName"
-                />
+               <input class="field__input" type="text" id="lastname" placeholder="Last Name" name="lastName"/>
+                <%if (typeof(err) !== 'undefined') {%> 
+                  <%if (typeof(err.errors.lastName) !== 'undefined') {%> 
+                     <span class="error"><%=err.errors.lastName%></span>
+                      <%}%>
+                    <%}%>
               </label>
             </div>
             <label class="field">
-              <span class="field__label" for="address">Address</span>
               <input
-                id="address" class="field__input" type="text" placeholder="12st Patra,Achaia" name="address"/>
+                id="address" class="field__input" type="text" placeholder="Address" name="address"/>
+                <%if (typeof(err) !== 'undefined') {%> 
+                  <%if (typeof(err.errors.address) !== 'undefined') {%> 
+                     <span class="error"><%=err.errors.address%></span>
+                      <%}%>
+                    <%}%>
             </label>
             <label class="field">
-              <span class="field__label" for="country">Country</span>
-              <select class="field__input" id="country">
+              <select class="field__input" id="country" name="country">
                 <option value=""></option>
-                <option value="unitedstates" name="country" >Greece</option>
+                <option value="Greece" name="country" >Greece</option>
+                <option value="Cyprus" name="country" >Cyprus</option>
               </select>
+              <%if (typeof(err) !== 'undefined') {%> 
+                <%if (typeof(err.errors.country) !== 'undefined') {%> 
+                   <span class="error"><%=err.errors.country%></span>
+                    <%}%>
+                  <%}%>
             </label>
             <div class="fields fields--3">
               <label class="field">
-                <span class="field__label" for="zipCode">Zip code</span>
-                <input class="field__input" type="text" id="zipcode" placeholder="12345" name="zipCode"/>
+                <input class="field__input" type="text" id="zipcode" placeholder="Zip Code" name="zipCode"/>
+                <%if (typeof(err) !== 'undefined') {%> 
+                  <%if (typeof(err.errors.zipCode) !== 'undefined') {%> 
+                     <span class="error"><%=err.errors.zipCode%></span>
+                      <%}%>
+                    <%}%>
               </label>
               <label class="field">
-                <span class="field__label" for="city">City</span>
-                <input class="field__input" type="text" id="city" placeholder="Patra" name="City"/>
+                <input class="field__input" type="text" id="city" placeholder="City" name="city"/>
+                <%if (typeof(err) !== 'undefined') {%> 
+                  <%if (typeof(err.errors.city) !== 'undefined') {%> 
+                     <span class="error"><%=err.errors.city%></span>
+                      <%}%>
+                    <%}%>
               </label>
             </div>
             <button href="#plan" id="continue">Proceed</button>

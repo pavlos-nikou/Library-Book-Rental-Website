@@ -52,5 +52,3 @@ function logAllAccounts(){
         console.log(err)
     })
 }
-
-logAllAccounts()

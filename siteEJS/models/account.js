@@ -54,7 +54,8 @@ const accountSchema = mongoose.Schema({
         type: String,
         trim: true,
         require: false
-    }
+    },
+    cart:Array
 })
 
 const Account  =mongoose.model("Account", accountSchema);

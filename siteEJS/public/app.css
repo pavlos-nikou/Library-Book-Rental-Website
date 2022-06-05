@@ -244,6 +244,8 @@ footer #about, #newsletter {
 
 #newsletter p{
     padding-left: 25px;
+    text-align: center;
+    padding-bottom: 30px;
 }
 
 .newsletter_input{
@@ -290,6 +292,12 @@ footer a{
     color: whitesmoke;
     font-size: 20px;
     margin: 1.5%;
+}
+
+footer p{
+    margin: 0 auto;
+    width: 90%;
+    line-height: 1.5;
 }
 
 footer a:hover{
@@ -343,6 +351,22 @@ footer .links h2 {
         height: 100%;
         width: 100%;
     }
+    footer .container{
+        flex-direction: column;
+    }
+    footer #about,.links,#newsletter {
+        border: none;
+        border-bottom: 1px solid white;
+        text-align: center;
+        font-size: 0.5em;
+        width: 100%;
+        margin-bottom: 30px;
+        padding-bottom: 30px;
+    }
+    footer #newsletter{
+        border: none;
+    }
+
 }
 
 .hidden {

@@ -84,7 +84,9 @@
     cursor: pointer;
 }
 
-.caruselItem h2 {
+.caruselItem a {
+    color: whitesmoke;
+    text-decoration:none;
     font-size: 1.2em;
     font-weight: 400;
     max-width: 7em;
@@ -106,7 +108,7 @@
     font-size: 0.7em;
 }
 
-.caruselItem button{
+.caruselItem .addToCart{
     color: whitesmoke;
     font-size: 30px;
     position: absolute;
@@ -119,14 +121,14 @@
     border: none;
 }
 
-.caruselItem button:hover{
-    transform: scale();
+.caruselItem .addToCart:hover{
+    transform: scale(1.2);
 }
 
-.caruselItem button img{
-    width: 90%;
-    height: 90%;
-    margin: 0;
+.caruselItem .addToCart .fa-solid{
+    width: 100%;
+    height: 100%;
+    padding: 12px;
 }
 
 @media(max-width:1400px){

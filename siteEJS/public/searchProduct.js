@@ -70,7 +70,7 @@ let genreFilters = document.querySelectorAll(".side-genres input")
 let materialFilters = document.querySelectorAll(".side-material input")
 let langFilters = document.querySelectorAll(".side-langs input")
 let filters = { genre: [], material: [], lang: [] }
-
+    
 // clear filters
 let removeGenre = document.querySelector("#removeGenre")
 // removeGenre.addEventListener("click",removeFilters)
@@ -150,7 +150,12 @@ const appendNewData = data => {
                             <a class="title" href = "/UnderConstruction/searchProducts/${book._id}">${book.title}</a>
                             <span>Rating:</span>
                             <p>${ratingInStars}</p>
-                            <button class="addToCart"><i class="fa-solid fa-cart-plus"></i></button>`
+                            <button class="addToCart" data-id="${book._id}"><i class="fa-solid fa-cart-plus" data-id="${book._id}"></i></button>`
+        item.lastChild.addEventListener("click",event=>{
+            let itemId = event.target.dataset.id
+            let url = `${location.origin}/addToCart/${itemId}`
+            fetch(url).then(location.reload())
+        })
         displayItems.appendChild(item)
     })
 }
@@ -278,3 +283,8 @@ sortRatingButton.addEventListener("click", () => {
     sort(sortRating)
 })
 
+// // addToCart
+// let addToCartButtons = document.querySelectorAll(".addToCArt")
+// addToCartButtons.forEach(button =>{
+    
+// })

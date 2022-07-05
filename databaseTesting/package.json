@@ -1,0 +1,18 @@
+{
+  "name": "databasetesting",
+  "version": "1.0.0",
+  "description": "testing for database functionality and composition of queries",
+  "main": "tests.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "chai": "^4.3.6",
+    "langs": "^2.0.0",
+    "mocha": "^10.0.0",
+    "mongoose": "^6.4.1"
+  }
+}

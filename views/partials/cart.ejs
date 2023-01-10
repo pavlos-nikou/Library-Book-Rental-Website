@@ -1,0 +1,29 @@
+<div class="cart hovering">
+    <div class="cartHeader">
+        <i class="fa-solid fa-cart-shopping" id="cartIcon"><span id="cartCount"><%=cart.length%></span></i>
+        
+        <span id="cartQuitButton" class="hidden">X</span>
+    </div>
+    <div class="cartBody">
+        <fieldset id="shoppingCart">
+            <legend>Cart Items</legend>
+            <div class="emptyLabal">
+            </div>
+            <%i=0%>
+            <%cart.forEach(item =>{%>
+            <div class="cartItem">
+                <img src="<%=item.image_url%>" alt="harry potter book">
+                <a class="title"><%=item.title%></a>
+                <div class="quantity">
+                  <button class="rem"data-id="<%=item.id%>">-</button>
+                  <input type="text" value="<%=qtys[i]%>">
+                  <button class="add" data-id="<%=item.id%>">+</button>
+                </div>
+                <button class="removeItemButton">x</button>
+              </div>
+              <%i++%>
+              <%})%>
+        </fieldset>
+        <a class="checkoutButton" href="/UnderConstruction/Checkout">checkout</a>
+    </div>
+</div>

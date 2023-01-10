@@ -1,0 +1,241 @@
+header{
+    z-index: 5;
+}
+
+.mainElement {
+    display: flex;
+    font-family: roboto, sans-serif;
+}
+
+.productNav {
+    position: sticky;
+    top: 0;
+    color: #023047;
+    padding-top: 30px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 2px solid grey;
+    background-color: whitesmoke;
+    z-index: 3;
+}
+
+.productNav .search {
+    font-size: 30px;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.productNav input {
+    font-size: 0.4em;
+    color: black;
+    background: none;
+    border-radius: 2em;
+    padding-left: 0.5em;
+    border-color: black;
+    margin-bottom: 10px;
+}
+
+.productNav input::placeholder {
+    color: grey;
+}
+
+.productNav .icon {
+    width: 35px;
+}
+
+.productNav .icon:hover {
+    color: #219ebc;
+}
+
+.active {
+    color: #ffb703;
+}
+
+.sidebar{
+    position: sticky;
+    top: 75px;
+    width: 500px;
+    height: 92vh;
+    color: whitesmoke;
+    border: 2px solid grey;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.814385150812065) 0%, rgba(0, 0, 0, 0.6979166666666667) 17%, rgba(0, 212, 255, 0) 100%);
+    background-color: #415a77;
+    transform: none;
+    transition: 200ms ease-in;
+    z-index: 2;
+}
+
+.filters{
+    height: 91vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.filters::-webkit-scrollbar {
+    width: 10px;
+}
+
+.filters::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+.filters::-webkit-scrollbar-thumb {
+    background: whitesmoke;
+    border-radius: 10px;
+}
+
+.filters::-webkit-scrollbar-thumb:hover {
+    background:#219ebc;
+}
+
+.filters::-webkit-scrollbar-corner {
+    background: none;
+}
+
+.side h2, .side input{
+    margin-left: 30px;
+}
+
+.side h2 {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 2em;
+}
+
+.sidebar .iconContainer{
+    position: absolute;
+    background-color: black;
+    opacity: 80%;
+    top: 0px;
+    right: -100px;
+    width: 100px;
+    height: 105px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    z-index: 2;
+}
+
+.sidebar .expand-sidebar-icon{
+    font-size: 45px;
+    opacity: 0.80;
+    text-align: center;
+    padding: 30px;
+    transition: 200ms;
+}
+
+.displayItems {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.item {
+    position: relative;
+    height: 500px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+    margin-bottom: 30px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 30px;
+    width: 300px;
+    border: 1px solid lightgray;
+    border-radius: 30px;
+    transition: 300ms;
+}
+
+.item img {
+    width: 50%;
+}
+
+.item .title {
+    text-decoration: none;
+    color: black;
+    width: 95%;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.item .addToCart{
+    color: whitesmoke;
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 60px;
+    background-color: crimson;
+    border-radius: 50%;
+    border: none;
+}
+
+.fa-star{
+    color: gold;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: black;
+}
+
+.loading{
+    text-align: center;
+    min-width: 100%;
+    display: block;
+    font-size: 3em;
+}
+
+.nothingFound{
+    color: grey;
+    margin-top: 10vh;
+}
+
+@media(max-width:1150px) {
+    .displayItems{
+        width: 100%;
+    }
+    .filters{
+        height: 70vh;
+    }
+    .sidebar{
+        width: 350px;
+        position: fixed;
+        top: 200px;
+        height: 70vh;
+    }
+}
+
+@media(max-width:637px){
+    .item{
+        height: 175px;
+        width: 100%;
+        flex-direction: row;
+        font-size: 0.5em;
+    }
+    .item img{
+        width:20%;
+    }
+    .item .title{
+        width: 35%;
+        font-size: 1.7em;
+    }
+    .item span{
+        font-size:1em;
+    }
+}
+
+
+/* sidebar expand */
+.hideSidebar{
+    transform: translateX(-350px);
+}
+.rotate-icon-180{
+    transform: rotate(-180deg);
+}
+
+.hide{
+    display: none;
+}

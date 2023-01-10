@@ -1,0 +1,17 @@
+<header class>
+    <nav id="navbar">
+        <a id="logo" href="/UnderConstruction">Under Construction</a>
+        <ul class="toggling">
+            <li class="toggling" id="toggling"><a href="/UnderConstruction#Genres" class="navbarButton">Genres</a></li>
+            <li class="toggling" id="toggling"><a href="#sales" class="navbarButton">Sales</a></li>
+            <li class="toggling" id="toggling"><a href="#top10" class="navbarButton">Top 10</a></li>
+            <li class="toggling" id="toggling"><a href="#about" class="navbarButton">About Us</a></li>
+        </ul>
+        <div id="accountIcon"><%if(signedIn = true )%><i class="fa-solid fa-user"></i> <%= account.username%></div>
+        <form action="/UnderConstruction/searchProducts/s" class="toggling" id="toggling">
+            <label for="search-box">&telrec;</label>
+            <input type="text" name="search" id="search-box" placeholder="Search Book">
+        </form>
+        <button id="toggle">&equiv;</button>
+    </nav>
+</header>

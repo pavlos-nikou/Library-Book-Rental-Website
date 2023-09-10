@@ -44,7 +44,7 @@ async function langC2N(){
 }
 
 function logAllAccounts(){
-    let account = Account.insertMany({name:"petris",surname:"poutakazia",email:"pavlis_n@yahoo.com"})
+    let account = Account.insertMany({name:"pavlos",surname:"nikou",email:"pavlis_n@yahoo.com"})
     .then(data =>{
         console.log(data)
     })
